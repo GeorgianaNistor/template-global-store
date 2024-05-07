@@ -1,15 +1,14 @@
 import React from "react";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../store/Cart/context";
+import { useProductsProvider } from "../store/Cart/productsContext";
 
 export function Home() {
-	const { state } = useContext(CartContext);
-	console.log(state);
+	const { products } = useProductsProvider();
+	console.log(products);
 	return (
 		<div>
 			<div className="d-flex flex-column align-items-center">
-				{state.products.map((product) => {
+				{products.map((product) => {
 					return (
 						<div style={{ border: '1px solid black',  padding: 10, margin: 10 }}>
 							Nume Produs:

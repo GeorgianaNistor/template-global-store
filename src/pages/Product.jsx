@@ -1,12 +1,11 @@
 import React from "react";
-import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import { CartContext } from "../store/Cart/context";
+import { useProductsProvider } from "../store/Cart/productsContext";
 
 export default function Product() {
-	const { state } = useContext(CartContext);
+	const { products } = useProductsProvider();
 	let { id } = useParams();
-	const foundProduct = state.products.find((product) => product.gameID === id);
+	const foundProduct = products.find((product) => product.gameID === id);
 
 	return (
 		<div>

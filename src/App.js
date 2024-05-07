@@ -5,53 +5,45 @@ import { Home } from "./pages/Home";
 
 import Products from "./pages/Products";
 import Product from "./pages/Product";
-
-import { Header } from "./components/Header";
-import { useReducer } from "react";
-import { initialState, cartReducer } from "./store/Cart/reducer";
-import { CartContext } from "./store/Cart/context";
-import MainContainer from "./components/MainContainer";
+import { APIProductsContextProvider } from "./store/Cart/productsContext";
+import Header from "./components/Header";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: (
-			<MainContainer>
+			<>
+				<Header />
 				<Home />
-			</MainContainer>
+			</>
 		),
 	},
 	{
 		path: "/products",
 		element: (
-			<MainContainer>
+			<>
+				<Header />
 				<Products />
-			</MainContainer>
+			</>
 		),
 	},
 	{
 		path: "/product/:id",
 		element: (
-			<MainContainer>
+			<>
+				<Header />
 				<Product />
-			</MainContainer>
+			</>
 		),
 	},
 ]);
 
 export default function App() {
-	const [state, dispatch] = useReducer(cartReducer, initialState);
-
-	const cartContextValue = {
-		state,
-		dispatch,
-	};
-
 	return (
-		<CartContext.Provider value={cartContextValue}>
+		<APIProductsContextProvider>
 			<div className="App primary">
 				<RouterProvider router={router} />
 			</div>
-		</CartContext.Provider>
+		</APIProductsContextProvider>
 	);
 }

@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../store/Cart/context';
-import { useContext } from 'react';
 
 export default function Header() {
-  const { state } = useContext(CartContext);
 
   return (
     <header>
